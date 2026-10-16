@@ -1,0 +1,3 @@
+[submodule "chat-on-fastapi"]
+	path = chat-on-fastapi
+	url = https://github.com/yorunoR/chat-on-fastapi
