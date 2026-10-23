@@ -2,11 +2,12 @@
 set -e
 
 psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-EOSQL
-    CREATE USER developer WITH PASSWORD 'password' LOGIN;
-    ALTER USER developer CREATEDB CREATEROLE;
-EOSQL
+    CREATE USER developer WITH PASSWORD 'password' LOGIN CREATEDB;
+    CREATE USER ai WITH PASSWORD 'password' LOGIN CREATEDB;
 
-psql -v ON_ERROR_STOP=1 --username "developer" --dbname "$POSTGRES_DB" <<-EOSQL
-    CREATE DATABASE api_dev;
-    CREATE DATABASE api_test;
+    CREATE DATABASE api_ai OWNER ai;
+    CREATE DATABASE api_dev OWNER developer;
+    CREATE DATABASE api_test OWNER developer;
+
+    REVOKE CONNECT ON DATABASE api_ai, api_dev, api_test FROM PUBLIC;
 EOSQL
