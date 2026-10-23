@@ -1,11 +1,12 @@
 import { serve } from "@hono/node-server";
 import { WebSocketServer } from "ws";
 import { app } from "./entrypoints/app.js";
+import { env } from "./env.js";
 
 serve(
   {
     fetch: app.fetch,
-    port: 3000,
+    port: env.PORT,
     websocket: { server: new WebSocketServer({ noServer: true }) },
   },
   (info) => {
