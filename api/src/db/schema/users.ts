@@ -2,6 +2,7 @@ import { relations } from "drizzle-orm";
 import { integer, pgTable, varchar } from "drizzle-orm/pg-core";
 import { chatSessions } from "./chat_sessions.js";
 import { timestamps } from "./columns/timestamps.js";
+import { messages } from "./messages.js";
 
 export const users = pgTable("users", {
   id: integer("id").primaryKey().generatedAlwaysAsIdentity(),
@@ -12,6 +13,7 @@ export const users = pgTable("users", {
 
 export const usersRelations = relations(users, ({ many }) => ({
   chatSessions: many(chatSessions),
+  messages: many(messages),
 }));
 
 export type User = typeof users.$inferSelect;

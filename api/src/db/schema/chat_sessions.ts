@@ -1,6 +1,7 @@
 import { relations } from "drizzle-orm";
 import { integer, pgTable, text, varchar } from "drizzle-orm/pg-core";
 import { timestamps } from "./columns/timestamps.js";
+import { messages } from "./messages.js";
 import { users } from "./users.js";
 
 export const chatSessions = pgTable("chat_sessions", {
@@ -14,12 +15,16 @@ export const chatSessions = pgTable("chat_sessions", {
   ...timestamps,
 });
 
-export const chatSessionsRelations = relations(chatSessions, ({ one }) => ({
-  user: one(users, {
-    fields: [chatSessions.userId],
-    references: [users.id],
+export const chatSessionsRelations = relations(
+  chatSessions,
+  ({ one, many }) => ({
+    user: one(users, {
+      fields: [chatSessions.userId],
+      references: [users.id],
+    }),
+    messages: many(messages),
   }),
-}));
+);
 
 export type ChatSession = typeof chatSessions.$inferSelect;
 export type NewChatSession = typeof chatSessions.$inferInsert;
