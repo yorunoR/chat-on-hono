@@ -1,6 +1,6 @@
 import { relations } from "drizzle-orm";
 import { integer, pgTable, text } from "drizzle-orm/pg-core";
-import { chatSessions } from "./chat_sessions.js";
+import { chatSessions } from "./chat-sessions.js";
 import { timestamps } from "./columns/timestamps.js";
 import { users } from "./users.js";
 
