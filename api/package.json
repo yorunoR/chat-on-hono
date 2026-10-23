@@ -12,6 +12,7 @@
     "db:migrate": "drizzle-kit migrate",
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
+    "db:drop": "drizzle-kit drop",
     "db:status": "tsx src/scripts/db-status.ts",
     "db:rollback": "tsx src/scripts/db-rollback.ts",
     "admin:create": "tsx src/scripts/create-admin-user.ts"
