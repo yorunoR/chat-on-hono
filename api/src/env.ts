@@ -4,4 +4,6 @@ export const env = {
   DATABASE_URL: process.env.DATABASE_URL,
   ADMIN_SECRET: process.env.ADMIN_SECRET,
   PORT: Number(process.env.PORT ?? 3000),
+  SAVE_PROMPT_TEMPLATE:
+    process.env.SAVE_PROMPT_TEMPLATE?.toLowerCase() === "true",
 };
