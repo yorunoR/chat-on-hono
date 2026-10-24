@@ -46,6 +46,6 @@ docker compose exec api pnpm admin:create admin@example.com
 ## 動作確認
 
 ```sh
-curl http://localhost:3000/           # Hello Hono!
+curl http://localhost:3000/health     # {"status":"ok"}
 curl http://localhost:3000/health/db  # {"status":"ok"}
 ```
