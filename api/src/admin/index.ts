@@ -1,7 +1,7 @@
 import { createAdmin } from "@sson0-er/drizzle-admin";
 import { eq } from "drizzle-orm";
 import { db } from "../db/index.js";
-import { adminUsers, users } from "../db/schema/index.js";
+import { adminUsers, chatSessions, users } from "../db/schema/index.js";
 import { env } from "../env.js";
 import {
   hashPassword,
@@ -55,4 +55,11 @@ admin.register(users, {
   searchFields: ["email"],
   readonlyFields: ["createdAt", "updatedAt"],
   toString: (row) => row.email,
+});
+
+admin.register(chatSessions, {
+  listDisplay: ["id", "uid"],
+  searchFields: ["uid"],
+  readonlyFields: ["createdAt", "updatedAt"],
+  toString: (row) => row.uid,
 });
