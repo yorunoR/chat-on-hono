@@ -2,7 +2,7 @@
 export HOST_UID := $(shell id -u)
 export HOST_GID := $(shell id -g)
 
-.PHONY: up b cl cx build
+.PHONY: up b cl cx stop down build
 
 up:
 	docker compose up

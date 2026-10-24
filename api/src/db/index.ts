@@ -1,9 +1,9 @@
 import { drizzle } from "drizzle-orm/node-postgres";
+import { env } from "../env.js";
 import * as schema from "./schema/index.js";
 
-const databaseUrl = process.env.DATABASE_URL;
-if (!databaseUrl) {
+if (!env.DATABASE_URL) {
   throw new Error("DATABASE_URL is not set");
 }
 
-export const db = drizzle(databaseUrl, { schema });
+export const db = drizzle(env.DATABASE_URL, { schema });

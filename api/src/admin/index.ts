@@ -1,7 +1,8 @@
 import { createAdmin } from "@sson0-er/drizzle-admin";
 import { eq } from "drizzle-orm";
 import { db } from "../db/index.js";
-import { adminUsers } from "../db/schema/index.js";
+import { adminUsers, users } from "../db/schema/index.js";
+import { env } from "../env.js";
 import {
   hashPassword,
   PASSWORD_MIN_LENGTH,
@@ -12,7 +13,7 @@ export const admin = createAdmin({
   db,
   dialect: "postgres",
   basePath: "/admin",
-  secret: process.env.ADMIN_SECRET ?? "", // 32 文字以上。未設定ならライブラリが起動時にエラーにする
+  secret: env.ADMIN_SECRET ?? "", // 32 文字以上。未設定ならライブラリが起動時にエラーにする
   auth: {
     // ログイン画面の Username にはメールアドレスを入力する
     verifyCredentials: async (email, password) => {
@@ -47,4 +48,11 @@ admin.register(adminUsers, {
         ? { ...data, hashedPassword: await hashPassword(data.hashedPassword) }
         : data,
   },
+});
+
+admin.register(users, {
+  listDisplay: ["id", "email", "createdAt"],
+  searchFields: ["email"],
+  readonlyFields: ["createdAt", "updatedAt"],
+  toString: (row) => row.email,
 });
