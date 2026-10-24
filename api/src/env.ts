@@ -7,4 +7,8 @@ export const env = {
   PORT: Number(process.env.PORT ?? 3000),
   SAVE_PROMPT_TEMPLATE:
     process.env.SAVE_PROMPT_TEMPLATE?.toLowerCase() === "true",
+  WS_TIMEOUT_SECONDS: Number(process.env.WS_TIMEOUT_SECONDS ?? 300),
+  BACKGROUND_TASK_SHUTDOWN_TIMEOUT_SECONDS: Number(
+    process.env.BACKGROUND_TASK_SHUTDOWN_TIMEOUT_SECONDS ?? 30,
+  ),
 };
