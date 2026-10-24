@@ -13,10 +13,10 @@
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
     "db:drop": "drizzle-kit drop",
-    "db:status": "tsx src/scripts/db-status.ts",
-    "db:rollback": "tsx src/scripts/db-rollback.ts",
-    "admin:create": "tsx src/scripts/create-admin-user.ts",
-    "ws:normal-chat": "tsx src/scripts/ws-normal-chat.ts"
+    "db:status": "tsx src/scripts/db/status.ts",
+    "db:rollback": "tsx src/scripts/db/rollback.ts",
+    "admin:create": "tsx src/scripts/admin/create.ts",
+    "ws:normal-chat": "tsx src/scripts/ws/normal-chat.ts"
   },
   "dependencies": {
     "@hono/node-server": "^2.1.3",

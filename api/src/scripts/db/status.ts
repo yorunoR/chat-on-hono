@@ -4,11 +4,11 @@
 
 import { readFileSync } from "node:fs";
 import { sql } from "drizzle-orm";
-import { db } from "../db/index.js";
+import { db } from "../../db/index.js";
 
 const journal: { entries: { when: number; tag: string }[] } = JSON.parse(
   readFileSync(
-    new URL("../../drizzle/meta/_journal.json", import.meta.url),
+    new URL("../../../drizzle/meta/_journal.json", import.meta.url),
     "utf8",
   ),
 );

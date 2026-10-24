@@ -1,7 +1,7 @@
 import { upgradeWebSocket } from "@hono/node-server";
 import { Hono } from "hono";
 
-const ECHO_COUNT = 3;
+export const ECHO_COUNT = 3;
 
 export const normalChat = new Hono();
 

@@ -1,9 +1,10 @@
 // /ws/normal_chat にメッセージを 1 回送り、返ってきたエコーを表示する。
-// サーバーは 1 回の送信に 3 回エコーを返すので、3 件受け取ったら切断する。
+// サーバーは 1 回の送信に ECHO_COUNT 回エコーを返すので、その件数を受け取ったら切断する。
 // 使い方: pnpm ws:normal-chat [メッセージ]
 // 接続先は WS_URL で変更できる (既定: ws://localhost:3000/ws/normal_chat)
 
-const EXPECTED_COUNT = 3;
+import { ECHO_COUNT } from "../../entrypoints/routes/normal-chat.js";
+
 const TIMEOUT_MS = 5000;
 
 const url = process.env.WS_URL ?? "ws://localhost:3000/ws/normal_chat";
@@ -12,10 +13,10 @@ const message = process.argv[2] ?? "hello";
 const ws = new WebSocket(url);
 let received = 0;
 
-// 3 件届かないままサーバーが黙った場合に終了できるようにする
+// ECHO_COUNT 件届かないままサーバーが黙った場合に終了できるようにする
 const timer = setTimeout(() => {
   console.error(
-    `タイムアウト: ${TIMEOUT_MS}ms 以内に ${EXPECTED_COUNT} 件受信できませんでした (${received} 件受信)`,
+    `タイムアウト: ${TIMEOUT_MS}ms 以内に ${ECHO_COUNT} 件受信できませんでした (${received} 件受信)`,
   );
   process.exitCode = 1;
   ws.close();
@@ -30,7 +31,7 @@ ws.addEventListener("open", () => {
 ws.addEventListener("message", (event) => {
   received++;
   console.log(`recv ${received}: ${event.data}`);
-  if (received >= EXPECTED_COUNT) ws.close();
+  if (received >= ECHO_COUNT) ws.close();
 });
 
 ws.addEventListener("close", () => {

@@ -3,9 +3,9 @@
 
 import { createInterface } from "node:readline/promises";
 import { Writable } from "node:stream";
-import { hashPassword, PASSWORD_MIN_LENGTH } from "../admin/password.js";
-import { db } from "../db/index.js";
-import { adminUsers } from "../db/schema/index.js";
+import { hashPassword, PASSWORD_MIN_LENGTH } from "../../admin/password.js";
+import { db } from "../../db/index.js";
+import { adminUsers } from "../../db/schema/index.js";
 
 /** 入力内容を画面に表示せずに 1 行読む */
 async function promptHidden(question: string): Promise<string> {
