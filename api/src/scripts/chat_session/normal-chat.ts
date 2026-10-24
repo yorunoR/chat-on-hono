@@ -1,6 +1,6 @@
 // /ws/normal_chat にメッセージを 1 回送り、返ってきたエコーを表示する。
 // サーバーは 1 回の送信に ECHO_COUNT 回エコーを返すので、その件数を受け取ったら切断する。
-// 使い方: pnpm ws:normal-chat [メッセージ]
+// 使い方: pnpm session:normal-chat [メッセージ]
 // 接続先は WS_URL で変更できる (既定: ws://localhost:3000/ws/normal_chat)
 
 import { ECHO_COUNT } from "../../entrypoints/routes/normal-chat.js";
