@@ -4,8 +4,8 @@ import { HTTPException } from "hono/http-exception";
 import { logger } from "hono/logger";
 import { admin } from "../admin/index.js";
 import { health } from "./routes/health.js";
+import { healthDb } from "./routes/health-db.js";
 import { normalChat } from "./routes/normal-chat.js";
-import { root } from "./routes/root.js";
 
 export const app = new Hono();
 
@@ -22,6 +22,6 @@ app.onError((err, c) => {
 app.use("/admin/*", bodyLimit({ maxSize: 1024 * 1024 }));
 app.route("/admin", admin.app);
 
-app.route("/", root);
 app.route("/health", health);
+app.route("/health/db", healthDb);
 app.route("/ws/normal_chat", normalChat);
