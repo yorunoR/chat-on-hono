@@ -3,9 +3,9 @@ import { bodyLimit } from "hono/body-limit";
 import { HTTPException } from "hono/http-exception";
 import { logger } from "hono/logger";
 import { admin } from "../admin/index.js";
-import { health } from "./routes/health.js";
-import { healthDb } from "./routes/health-db.js";
-import { normalChat } from "./routes/normal-chat.js";
+import { chatSessionRoute } from "./routes/chat_session/index.js";
+import { healthRoute } from "./routes/health/index.js";
+import { normalChatRoute } from "./routes/normal_chat/index.js";
 
 export const app = new Hono();
 
@@ -22,6 +22,11 @@ app.onError((err, c) => {
 app.use("/admin/*", bodyLimit({ maxSize: 1024 * 1024 }));
 app.route("/admin", admin.app);
 
-app.route("/health", health);
-app.route("/health/db", healthDb);
-app.route("/ws/normal_chat", normalChat);
+// RPC クライアント (hc) が型を拾えるよう、ルートはチェーンでつないで AppType として export する。
+// 機能の接頭辞はここで付け、機能内のルートは routes/<機能>/index.ts でまとめる
+const routes = app
+  .route("/health", healthRoute)
+  .route("/chat_session", chatSessionRoute)
+  .route("/ws/normal_chat", normalChatRoute);
+
+export type AppType = typeof routes;

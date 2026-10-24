@@ -3,7 +3,7 @@
 // 使い方: pnpm session:normal-chat [メッセージ]
 // 接続先は WS_URL で変更できる (既定: ws://localhost:3000/ws/normal_chat)
 
-import { ECHO_COUNT } from "../../entrypoints/routes/normal-chat.js";
+import { ECHO_COUNT } from "../../entrypoints/routes/normal_chat/normal-chat.js";
 
 const TIMEOUT_MS = 5000;
 

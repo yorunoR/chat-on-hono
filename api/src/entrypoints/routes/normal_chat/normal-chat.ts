@@ -3,10 +3,8 @@ import { Hono } from "hono";
 
 export const ECHO_COUNT = 3;
 
-export const normalChat = new Hono();
-
 // クライアントからの 1 回の送信に対し、同じ内容を ECHO_COUNT 回返す
-normalChat.get(
+export const normalChat = new Hono().get(
   "/",
   upgradeWebSocket(() => ({
     onMessage(event, ws) {
