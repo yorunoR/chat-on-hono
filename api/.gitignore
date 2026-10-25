@@ -13,6 +13,7 @@ node_modules/
 
 # build
 dist/
+rpc-types/
 
 # env
 .env
@@ -33,3 +34,4 @@ lerna-debug.log*
 # local
 /.local/
 /.cache/
+/.npm/
