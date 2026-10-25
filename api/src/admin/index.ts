@@ -51,7 +51,7 @@ admin.register(adminUsers, {
 });
 
 admin.register(users, {
-  listDisplay: ["id", "email", "createdAt"],
+  listDisplay: ["id", "email", "uid", "createdAt"],
   searchFields: ["email"],
   readonlyFields: ["createdAt", "updatedAt"],
   toString: (row) => row.email,
@@ -65,7 +65,7 @@ admin.register(chatSessions, {
 });
 
 admin.register(messages, {
-  listDisplay: ["id", "question", "answer"],
+  listDisplay: ["id", "chatSessionId", "question", "answer"],
   searchFields: ["question", "answer"],
   readonlyFields: ["createdAt", "updatedAt"],
 });
