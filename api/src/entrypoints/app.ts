@@ -26,7 +26,7 @@ app.route("/admin", admin.app);
 // 機能の接頭辞はここで付け、機能内のルートは routes/<機能>/index.ts でまとめる
 const routes = app
   .route("/health", healthRoute)
-  .route("/chat_session", chatSessionRoute)
+  .route("/api/chat_session", chatSessionRoute)
   .route("/ws/normal_chat", normalChatRoute);
 
 export type AppType = typeof routes;
