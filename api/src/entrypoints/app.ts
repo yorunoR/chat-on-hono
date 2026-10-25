@@ -2,7 +2,7 @@ import { Hono } from "hono";
 import { bodyLimit } from "hono/body-limit";
 import { HTTPException } from "hono/http-exception";
 import { logger } from "hono/logger";
-import { admin } from "../admin/index.js";
+import { admin } from "#admin/index.js";
 import { chatSessionRoute } from "./routes/chat_session/index.js";
 import { healthRoute } from "./routes/health/index.js";
 import { normalChatRoute } from "./routes/normal_chat/index.js";

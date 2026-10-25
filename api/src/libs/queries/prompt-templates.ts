@@ -1,7 +1,7 @@
 import { createHash } from "node:crypto";
 import { and, eq } from "drizzle-orm";
-import { type Executor, db as executor } from "../../db/index.js";
-import { type PromptTemplate, promptTemplates } from "../../db/schema/index.js";
+import { type Executor, db as executor } from "#db/index.js";
+import { type PromptTemplate, promptTemplates } from "#db/schema/index.js";
 
 /** 同じ内容のテンプレートがあればそれを返し、なければ作成して返す */
 export async function getOrCreatePromptTemplate(

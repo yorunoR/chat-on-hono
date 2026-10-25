@@ -1,12 +1,15 @@
 import { Annotation, END, START, StateGraph } from "@langchain/langgraph";
-import type { ChatSession } from "../../../db/schema/index.js";
+import {
+  type AgentTemplate,
+  NormalNode,
+} from "#apps/normal_chat/nodes/normal-node.js";
+import type { ChatSession } from "#db/schema/index.js";
 import {
   getPromptTemplate,
   setStore,
-} from "../../../libs/prompts/prompt-template-store.js";
-import { appendQaToSession } from "../../../libs/queries/chat-sessions.js";
-import type { WsSender } from "../../../libs/websocket/sender.js";
-import { type AgentTemplate, NormalNode } from "../nodes/normal-node.js";
+} from "#libs/prompts/prompt-template-store.js";
+import { appendQaToSession } from "#libs/queries/chat-sessions.js";
+import type { WsSender } from "#libs/websocket/sender.js";
 
 const FLOW_NAME = "normal_chat_flow";
 

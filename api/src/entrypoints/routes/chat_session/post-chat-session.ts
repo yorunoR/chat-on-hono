@@ -1,8 +1,8 @@
 import { Hono } from "hono";
 import { validator } from "hono/validator";
-import { db } from "../../../db/index.js";
-import { chatSessions } from "../../../db/schema/index.js";
-import { requireUser } from "../../middlewares/require-user.js";
+import { db } from "#db/index.js";
+import { chatSessions } from "#db/schema/index.js";
+import { requireUser } from "#entrypoints/middlewares/require-user.js";
 
 // uid はクライアントが採番する。既に使われていれば 409 を返す
 export const postChatSession = new Hono().post(

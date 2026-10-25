@@ -4,7 +4,7 @@
 
 import { existsSync, readFileSync } from "node:fs";
 import { sql } from "drizzle-orm";
-import { db } from "../../db/index.js";
+import { db } from "#db/index.js";
 
 const migrationsFolder = new URL("../../../drizzle/", import.meta.url);
 

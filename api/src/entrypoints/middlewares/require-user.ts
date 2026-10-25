@@ -1,8 +1,8 @@
 import { eq } from "drizzle-orm";
 import { createMiddleware } from "hono/factory";
 import { HTTPException } from "hono/http-exception";
-import { db } from "../../db/index.js";
-import { type User, users } from "../../db/schema/index.js";
+import { db } from "#db/index.js";
+import { type User, users } from "#db/schema/index.js";
 
 // Authorization: Bearer <users.uid> でユーザーを特定し、c.var.user に入れる
 export const requireUser = createMiddleware<{ Variables: { user: User } }>(

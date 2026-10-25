@@ -2,10 +2,10 @@ import { upgradeWebSocket } from "@hono/node-server";
 import { eq } from "drizzle-orm";
 import { Hono } from "hono";
 import { HTTPException } from "hono/http-exception";
-import { runNormalChat } from "../../../apps/normal_chat/normal-chat-controller.js";
-import { db } from "../../../db/index.js";
-import { chatSessions } from "../../../db/schema/index.js";
-import { env } from "../../../env.js";
+import { runNormalChat } from "#apps/normal_chat/normal-chat-controller.js";
+import { db } from "#db/index.js";
+import { chatSessions } from "#db/schema/index.js";
+import { env } from "#env.js";
 
 // 会話はパスの chat_sessions.uid で判別し、存在しなければ upgrade せず 404 を返す
 export const normalChat = new Hono().get("/:sessionUid", async (c) => {

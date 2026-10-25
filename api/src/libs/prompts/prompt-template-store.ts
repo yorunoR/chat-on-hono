@@ -1,11 +1,8 @@
 import { readFileSync } from "node:fs";
 import { parse } from "yaml";
-import type {
-  NewPromptTemplate,
-  PromptTemplate,
-} from "../../db/schema/index.js";
-import { env } from "../../env.js";
-import { getOrCreatePromptTemplate } from "../queries/prompt-templates.js";
+import type { NewPromptTemplate, PromptTemplate } from "#db/schema/index.js";
+import { env } from "#env.js";
+import { getOrCreatePromptTemplate } from "#libs/queries/prompt-templates.js";
 
 type Template = Record<string, unknown>;
 type Flow = Record<string, Record<string, Template>>;

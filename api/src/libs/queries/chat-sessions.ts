@@ -1,10 +1,6 @@
 import { asc, eq } from "drizzle-orm";
-import { type Executor, db as executor } from "../../db/index.js";
-import {
-  type ChatSession,
-  type Message,
-  messages,
-} from "../../db/schema/index.js";
+import { type Executor, db as executor } from "#db/index.js";
+import { type ChatSession, type Message, messages } from "#db/schema/index.js";
 
 export type HistoryEntry = {
   role: "user" | "assistant";

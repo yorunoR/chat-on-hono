@@ -1,5 +1,5 @@
 import { ChatOpenAI, type ChatOpenAIFields } from "@langchain/openai";
-import { env } from "../../../../env.js";
+import { env } from "#env.js";
 
 export type OpenAIClientOptions = {
   modelKwargs: Omit<ChatOpenAIFields, "model" | "timeout" | "maxRetries">;

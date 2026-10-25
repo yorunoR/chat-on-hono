@@ -1,13 +1,8 @@
 import { createAdmin } from "@sson0-er/drizzle-admin";
 import { eq } from "drizzle-orm";
-import { db } from "../db/index.js";
-import {
-  adminUsers,
-  chatSessions,
-  messages,
-  users,
-} from "../db/schema/index.js";
-import { env } from "../env.js";
+import { db } from "#db/index.js";
+import { adminUsers, chatSessions, messages, users } from "#db/schema/index.js";
+import { env } from "#env.js";
 import {
   hashPassword,
   PASSWORD_MIN_LENGTH,

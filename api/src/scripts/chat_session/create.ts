@@ -3,8 +3,8 @@
 // 使い方: pnpm session:create <email> <label> [initialMessage]
 
 import { randomUUID } from "node:crypto";
-import { db } from "../../db/index.js";
-import { chatSessions, users } from "../../db/schema/index.js";
+import { db } from "#db/index.js";
+import { chatSessions, users } from "#db/schema/index.js";
 
 async function main(): Promise<number> {
   const [rawEmail, rawLabel, initialMessage] = process.argv.slice(2);

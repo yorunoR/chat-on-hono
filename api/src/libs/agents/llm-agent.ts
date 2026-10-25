@@ -5,11 +5,11 @@ import {
 } from "@langchain/core/prompts";
 import { RunnablePassthrough } from "@langchain/core/runnables";
 import type { ChatOpenAI } from "@langchain/openai";
-import type { ChatSession } from "../../db/schema/index.js";
+import type { ChatSession } from "#db/schema/index.js";
 import {
   LLMClient,
   type LLMClientOptions,
-} from "../external/llm/llm-client.js";
+} from "#libs/external/llm/llm-client.js";
 
 type Tools = Parameters<ChatOpenAI["bindTools"]>[0];
 type StructuredModel = Parameters<ChatOpenAI["withStructuredOutput"]>[0];

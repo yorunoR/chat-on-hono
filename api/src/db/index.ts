@@ -1,7 +1,7 @@
 import type { NodePgQueryResultHKT } from "drizzle-orm/node-postgres";
 import { drizzle } from "drizzle-orm/node-postgres";
 import type { PgDatabase } from "drizzle-orm/pg-core";
-import { env } from "../env.js";
+import { env } from "#env.js";
 import * as schema from "./schema/index.js";
 
 if (!env.DATABASE_URL) {

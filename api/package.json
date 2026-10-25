@@ -1,10 +1,16 @@
 {
   "name": "api",
   "type": "module",
+  "imports": {
+    "#*": {
+      "production": "./dist/*",
+      "default": "./src/*"
+    }
+  },
   "scripts": {
     "dev": "tsx watch src/index.ts",
     "build": "tsc",
-    "start": "node dist/index.js",
+    "start": "node --conditions=production dist/index.js",
     "lint": "biome check .",
     "lint:fix": "biome check --write .",
     "type": "tsc --noEmit",
