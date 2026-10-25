@@ -3,13 +3,14 @@
 ## リポジトリ
 
 - `api/`: Hono + Drizzle ORM + PostgreSQL の API サーバー。詳細は `api/docs/README.md` から読む。
+- `web/`: Vue + Vite のフロントエンド。Hono の RPC (`hono/client`) で `api/` と通信する。詳細は `web/README.md` から読む。
 - `chat-on-fastapi/`: git サブモジュール (別リポジトリ)。
 - `containers/`, `compose.yaml`, `Makefile`, `db/init/`: 開発環境。
 
 ## 作業環境
 
 - AI エージェントは `ai` コンテナ内で動く。DB は AI 専用の `api_ai` にのみ接続でき、`api_dev` / `api_test` には接続できない。
-- `api/` の変更後は `api/` で `pnpm lint` と `pnpm type` を通す。
+- `api/` の変更後は `api/` で、`web/` の変更後は `web/` で `pnpm lint` と `pnpm type` を通す。
 
 ## ルール
 
