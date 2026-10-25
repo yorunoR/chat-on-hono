@@ -8,7 +8,8 @@
     }
   },
   "scripts": {
-    "dev": "tsx watch src/index.ts",
+    "dev": "concurrently -k \"npm:dev:server\" \"npm:watch:types\"",
+    "dev:server": "tsx watch src/index.ts",
     "build": "tsc",
     "start": "node --conditions=production dist/index.js",
     "lint": "biome check .",
@@ -23,7 +24,9 @@
     "db:rollback": "tsx src/scripts/db/rollback.ts",
     "admin:create": "tsx src/scripts/admin/create.ts",
     "session:create": "tsx src/scripts/chat_session/create.ts",
-    "session:normal-chat": "tsx src/scripts/chat_session/normal-chat.ts"
+    "session:normal-chat": "tsx src/scripts/chat_session/normal-chat.ts",
+    "build:types": "tsc -p tsconfig.rpc.json",
+    "watch:types": "tsc -p tsconfig.rpc.json --watch"
   },
   "dependencies": {
     "@hono/node-server": "^2.1.3",
