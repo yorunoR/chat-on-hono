@@ -26,6 +26,7 @@ cp .env.ai.local.sample .env.ai.local
 ```
 
 - `.env.api.local` の `ADMIN_SECRET` に 32 文字以上のランダムな値 (例: `openssl rand -base64 48`) を設定します。
+- チャットを使う場合は、`.env.api.local` の `OPENAI_API_KEY` を設定します。
 - AI エージェントを API キーで使う場合は、`.env.ai.local` の `ANTHROPIC_API_KEY` を設定します。
 
 ### 3. コンテナを起動
@@ -35,7 +36,7 @@ make build
 make up
 ```
 
-http://localhost:3000 で API サーバーが起動します。マイグレーションの適用や管理者ユーザーの作成は [api/README.md](./api/README.md) を参照してください。
+`api` コンテナで `pnpm install` と `pnpm dev` が実行され、http://localhost:3000 で API サーバーが起動します。続けて [api/README.md](./api/README.md) の手順でマイグレーションの適用と管理者ユーザーの作成を行います。
 
 ### 4. AI エージェントを使う
 

@@ -7,12 +7,12 @@ import { getOrCreatePromptTemplate } from "#libs/queries/prompt-templates.js";
 type Template = Record<string, unknown>;
 type Flow = Record<string, Record<string, Template>>;
 
-// 全アプリの prompt_templates.yaml をまとめて持つ。キーは flowName
+// 全機能の prompt_templates.yaml をまとめて持つ。キーは flowName
 const promptTemplateStore: Record<string, Flow> = {};
 
 export function setStore(filename: string | URL): void {
   const templates: Record<string, Flow> = parse(readFileSync(filename, "utf8"));
-  // 別のアプリと flowName が重なると上書きされるため、エラーにする
+  // 別の機能と flowName が重なると上書きされるため、エラーにする
   const duplicated = Object.keys(templates)
     .filter((flowName) => flowName in promptTemplateStore)
     .sort();
