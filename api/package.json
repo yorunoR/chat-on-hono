@@ -1,0 +1,49 @@
+{
+  "name": "api",
+  "type": "module",
+  "imports": {
+    "#*": {
+      "production": "./dist/*",
+      "default": "./src/*"
+    }
+  },
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node --conditions=production dist/index.js",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "type": "tsc --noEmit",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio",
+    "db:drop": "drizzle-kit drop",
+    "db:status": "tsx src/scripts/db/status.ts",
+    "db:rollback": "tsx src/scripts/db/rollback.ts",
+    "admin:create": "tsx src/scripts/admin/create.ts",
+    "session:create": "tsx src/scripts/chat_session/create.ts",
+    "session:normal-chat": "tsx src/scripts/chat_session/normal-chat.ts"
+  },
+  "dependencies": {
+    "@hono/node-server": "^2.1.3",
+    "@langchain/core": "^1.2.18",
+    "@langchain/langgraph": "^1.5.1",
+    "@langchain/openai": "^1.6.2",
+    "@sson0-er/drizzle-admin": "0.1.0",
+    "drizzle-orm": "^0.45.4",
+    "hono": "^4.13.13",
+    "pg": "^8.23.1",
+    "ws": "^8.22.0",
+    "yaml": "^2.9.1"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.5.15",
+    "@types/node": "^26.1.1",
+    "@types/pg": "^8.23.1",
+    "@types/ws": "^8.18.2",
+    "drizzle-kit": "^0.31.11",
+    "tsx": "^4.23.0",
+    "typescript": "^7.0.2"
+  }
+}

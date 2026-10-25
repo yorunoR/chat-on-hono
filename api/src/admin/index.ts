@@ -1,0 +1,71 @@
+import { createAdmin } from "@sson0-er/drizzle-admin";
+import { eq } from "drizzle-orm";
+import { db } from "#db/index.js";
+import { adminUsers, chatSessions, messages, users } from "#db/schema/index.js";
+import { env } from "#env.js";
+import {
+  hashPassword,
+  PASSWORD_MIN_LENGTH,
+  verifyPassword,
+} from "./password.js";
+
+export const admin = createAdmin({
+  db,
+  dialect: "postgres",
+  basePath: "/admin",
+  secret: env.ADMIN_SECRET ?? "", // 32 文字以上。未設定ならライブラリが起動時にエラーにする
+  auth: {
+    // ログイン画面の Username にはメールアドレスを入力する
+    verifyCredentials: async (email, password) => {
+      const [user] = await db
+        .select()
+        .from(adminUsers)
+        .where(eq(adminUsers.email, email))
+        .limit(1);
+      if (!user?.isActive) return null;
+      if (!(await verifyPassword(password, user.hashedPassword))) return null;
+      return { id: String(user.id), name: user.email };
+    },
+  },
+});
+
+admin.register(adminUsers, {
+  listDisplay: ["id", "email", "isActive", "createdAt"],
+  searchFields: ["email"],
+  readonlyFields: ["createdAt", "updatedAt"],
+  // 入力欄は常に空で表示され、変更画面で空のまま保存すると現在のパスワードを維持する
+  widgets: { hashedPassword: "password" },
+  toString: (row) => row.email,
+  validate: ({ hashedPassword }) =>
+    typeof hashedPassword === "string" &&
+    hashedPassword.length < PASSWORD_MIN_LENGTH
+      ? { hashedPassword: `${PASSWORD_MIN_LENGTH} 文字以上にしてください` }
+      : undefined,
+  hooks: {
+    // drizzle-admin はハッシュ化しないので、保存前に平文をハッシュへ置き換える
+    beforeSave: async (data) =>
+      typeof data.hashedPassword === "string"
+        ? { ...data, hashedPassword: await hashPassword(data.hashedPassword) }
+        : data,
+  },
+});
+
+admin.register(users, {
+  listDisplay: ["id", "email", "createdAt"],
+  searchFields: ["email"],
+  readonlyFields: ["createdAt", "updatedAt"],
+  toString: (row) => row.email,
+});
+
+admin.register(chatSessions, {
+  listDisplay: ["id", "uid"],
+  searchFields: ["uid"],
+  readonlyFields: ["createdAt", "updatedAt"],
+  toString: (row) => row.uid,
+});
+
+admin.register(messages, {
+  listDisplay: ["id", "question", "answer"],
+  searchFields: ["question", "answer"],
+  readonlyFields: ["createdAt", "updatedAt"],
+});
