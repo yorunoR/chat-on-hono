@@ -29,6 +29,13 @@
       "when": 1792789686109,
       "tag": "0003_create_messages",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1792867855361,
+      "tag": "0004_create_prompt_templates",
+      "breakpoints": true
     }
   ]
 }
